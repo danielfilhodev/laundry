@@ -9,11 +9,12 @@ class SiteController extends Controller
 {
     public function index()
     {
-    	return "Home Site";
+    	//return "Home Site Ctrl";
+    	return view('site/home');
     }
     public function contato()
     {
-    	return "Pg Contato Site";
+    	return view('site/contato');
     }
 
 }

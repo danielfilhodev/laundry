@@ -78,6 +78,7 @@
             @endif
 
             <div class="content">
+                <a href="{{ url('/') }}">Home</a>
                 <div class="title m-b-md">
                     Contato Site
                 </div>

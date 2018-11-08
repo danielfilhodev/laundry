@@ -78,10 +78,10 @@
             @endif
 
             <div class="content">
-                <a href="{{ url('/dashboard') }}">Painel</a> | 
-                <a href="{{ url('/contato') }}">Contato</a>
+                <a href="{{ url('/') }}">Site</a> | 
+                <a href="{{ url('/setup') }}">Setup</a>
                 <div class="title m-b-md">
-                    Home Site
+                    Dashboard
                 </div>
 
 

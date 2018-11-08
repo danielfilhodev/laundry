@@ -9,11 +9,9 @@ Route::group(['namespace' => 'Site'], function(){
 
 Route::group(['namespace' => 'Painel'], function(){
 
-	/*
-	Route::get('',function(){
+	Route::get('/dashboard', 'PainelController@dashboard');
+	Route::get('/setup', 'PainelController@setup');
 
-	});
-	*/
 
 });
 

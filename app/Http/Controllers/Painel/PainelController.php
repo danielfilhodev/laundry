@@ -17,7 +17,6 @@ class PainelController extends Controller
 
 		//Todos os métodos exceto os definidos
 		//$this->middleware('auth')->except(['dashboard']);
-
 		
 	}
 
@@ -26,18 +25,18 @@ class PainelController extends Controller
 		return "Vc foi direcionado para pg login :)";
 	}
 
-	public function dashboard()
-	{
 
-		return view('painel/dashboard');
-		//return "Bem vindo {$nome}";
+	public function dashboard($nome='Visitante', $msg='Seja bem vindo!')
+	{
+		//passando para a variavel com a função compact
+		return view('painel.dashboard', compact('nome','msg'));
 
 	}
 
 	public function setup()
 	{
 
-		return view('painel/setup');
+		return view('painel.setup');
 
 	}
 

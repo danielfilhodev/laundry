@@ -14,7 +14,7 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        return "Listagem de Produtos";
+        return view('painel.produtos');
     }
 
     /**
@@ -35,7 +35,7 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->
+       
     }
 
     /**

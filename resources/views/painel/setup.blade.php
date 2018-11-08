@@ -78,7 +78,7 @@
             @endif
 
             <div class="content">
-                <a href="{{ url('/dashboard') }}">Painel</a>
+                <a href="{{ url('/dashboard') }}">Dashboard</a>
                 <div class="title m-b-md">
                     Setup
                 </div>

@@ -1,5 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,28 +65,9 @@
             }
         </style>
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
+	<body>
 
-            <div class="content">
-                <a href="{{ url('/dashboard') }}">Dashboard</a> | 
-                <a href="{{ url('/contato') }}">Contato</a>
-                <div class="title m-b-md">
-                    Home Site
-                </div>
+		@yield('content')
 
-
-            </div>
-        </div>
-    </body>
+	</body>
 </html>

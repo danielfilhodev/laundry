@@ -66,6 +66,9 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            @if(isset($nome))
+                <a href="{{$nome}}">Home</a>
+            @endif
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
@@ -79,7 +82,8 @@
 
             <div class="content">
                 <a href="{{ url('/') }}">Site</a> | 
-                <a href="{{ url('/setup') }}">Setup</a>
+                <a href="{{ url('/setup') }}">Setup</a> | 
+                <a href="{{ url('/produtos') }}">Produtos</a>
                 <div class="title m-b-md">
                     Dashboard
                 </div>

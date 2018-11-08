@@ -1,7 +1,17 @@
-@extends('site.template.template2')
+@extends('site.template.template1')
 
 @section('content')
 
-<h1>HOME SITE</h1>
+<div class="flex-center position-ref full-height">
+
+    <div class="content">
+        <a href="{{ url('/') }}">Site</a> | 
+        <a href="{{ url('/contato') }}">Contato</a>
+        <div class="title m-b-md">
+            Home
+        </div>
+    </div>
+    
+</div>
 
 @endsection

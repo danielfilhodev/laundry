@@ -26,17 +26,19 @@ class PainelController extends Controller
 	}
 
 
-	public function dashboard($nome='Visitante', $msg='Seja bem vindo!')
+	public function dashboard()
 	{
+		$nome='Daniel';
+		$msg = 'Seja Bem Vindo! ';
 		//passando para a variavel com a função compact
-		return view('painel.dashboard', compact('nome','msg'));
+		return view('painel.dashboard.dashboard', compact('nome','msg'));
 
 	}
 
 	public function setup()
 	{
 
-		return view('painel.setup');
+		return view('painel.setup.setup');
 
 	}
 

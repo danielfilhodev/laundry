@@ -1,1 +1,0 @@
-@extends('site.template.template2')

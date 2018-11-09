@@ -17,6 +17,7 @@ Route::group(['namespace' => 'Painel'], function(){
 	Route::get('/dashboard', 'PainelController@dashboard');
 	Route::get('/setup', 'PainelController@setup');
 	Route::get('/login', 'PainelController@login');
+	Route::get('/teste', 'PainelController@teste');
 	Route::resource('/produtos', 'ProdutoController');
 
 });

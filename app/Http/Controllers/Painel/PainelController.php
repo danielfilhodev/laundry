@@ -40,6 +40,14 @@ class PainelController extends Controller
 
 		return view('painel.setup.setup');
 
+	}	
+
+	public function teste()
+	{
+		$arrayData = [];
+
+		return view('painel.setup.teste', compact('arrayData'));
+
 	}
 
 }

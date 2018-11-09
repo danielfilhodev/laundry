@@ -82,8 +82,11 @@
 
             <div class="content">
                 <a href="{{ url('/dashboard') }}">Dashboard</a>
-                <!--<a href="{{ url('/setup') }}">Setup</a> | 
-                <a href="{{ url('/produtos') }}">Produtos</a>-->
+
+                {{--COMENTARIO BLADE 
+
+                    <a href="{{ url('/setup') }}">Setup</a> | 
+                <a href="{{ url('/produtos') }}">Produtos</a>--}}
                 <div class="title m-b-md">
                     Produtos
                 </div>

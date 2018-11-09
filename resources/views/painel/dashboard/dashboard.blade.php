@@ -4,12 +4,18 @@
 
 <div class="flex-center position-ref full-height">
 
-<div class="top-right links">
-	<!--usar este modelo para entradas de usuarios-->
-	{{$nome or 'Visitante'}} - 
-	<!--usar este quando for preciso passar algum script-->
-	{!! $msg !!}
-</div>
+@if (Auth::check())
+
+	<div class="top-right links">
+	    <a href="{{ url('/home') }}">Home</a>
+		<!--usar este modelo para entradas de usuarios-->
+		{{$nome or 'Visitante'}} - 
+		<!--usar este quando for preciso passar algum script-->
+		{!! $msg !!}
+	</div>
+
+@endif
+
 
     <div class="content">
         <a href="{{ url('/') }}">Site</a> | 
@@ -20,5 +26,7 @@
     </div>
     
 </div>
+
+@include('site.includes.siderbar')
 
 @endsection

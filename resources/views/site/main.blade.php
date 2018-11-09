@@ -1,1 +1,1 @@
-@extends('site.template.template2')
+@extends('site.template.template1')

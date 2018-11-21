@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>Listagem de Produtos</h1> 
-    <a href="{{ url('/dashboard') }}">Dashboard</a> 
+    <a href="{{ url('/painel/dashboard') }}">Dashboard</a> 
     <div class="content">
         <div class="title m-b-md">
         </div>

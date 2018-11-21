@@ -8,14 +8,26 @@ use App\Models\Painel\Produto;
 
 class ProdutoController extends Controller
 {
+
+    private $produto;
+
+    public function __construct(Produto $produto)
+    {
+
+        $this->produto = $produto;
+
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Produto $produto)
+
+
+    public function index()
     {
-        $prod = $produto -> all();
+        $prod = $this->produto->all();
 
         return view('painel.produtos.index', compact('prod'));
     }
@@ -84,5 +96,52 @@ class ProdutoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function teste ()
+    {
+/*
+        $insert = $this->produto->create([
+            'name'          => 'Iphone X',
+            'number'        => 52568,
+            'active'        => true,
+            'category'      => 'eletronicos',
+            'description'   => 'Celular 128Gb Ram',
+            'image'         => 'Celular 128Gb Ram',
+        ]);
+        
+        if($insert)
+            return "Produto cadastrado com sucesso! ID: {$insert->id}";
+        else
+            return "Não foi possivel cadastrar o produto!";
+*/
+    //dd($p);
+    //FAZENDO UPDATE USANDO O METODO FIND (pesquisa pelo id)        
+    /*
+    $p = $this->produto->find(5);
+    $update = $p->update([
+            'name'          => 'Asus ZenFone',
+            'number'        => 45654,
+            'active'        => true,
+            'category'      => 'eletronicos',
+    ]);
+
+        if($update)
+            return "Produto Alterado com sucesso!";
+        else
+            return "Não foi possivel Alterar o produto!";
+
+    */
+    $update = $this->produto->where('number', 123456)->update([
+                                'name'     => 'Asus ZenFone',
+                                'number'   => 99,
+                                'active'   => true,
+                                'category' => 'eletronicos',  
+    ]);
+            if($update)
+            return "Produto Alterado com sucesso! 2";
+        else
+            return "Não foi possivel Alterar o produto!";
     }
 }

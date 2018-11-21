@@ -19,8 +19,9 @@
 
     <div class="content">
         <a href="{{ url('/') }}">Site</a> | 
-        <a href="{{ url('/produtos') }}">Produtos</a> | 
-        <a href="{{ url('/setup') }}">Setup</a>
+        <a href="{{ url('/painel/produtos') }}">Produtos</a> | 
+        <a href="{{ url('/painel/setup') }}">Setup</a> |
+        <a href="{{ url('/painel/teste') }}">teste</a> 
         <div class="title m-b-md">
             Dashboard
         </div>

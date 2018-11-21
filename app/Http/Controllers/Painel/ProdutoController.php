@@ -1,4 +1,6 @@
 <?php
+//USADO PARA DEBUGAR O CODIGO
+//dd();
 
 namespace App\Http\Controllers\Painel;
 
@@ -27,9 +29,11 @@ class ProdutoController extends Controller
 
     public function index()
     {
+        $title = 'Listagem de Contratos';
+
         $prod = $this->produto->all();
 
-        return view('painel.produtos.index', compact('prod'));
+        return view('painel.produtos.index', compact('prod', 'title'));
     }
 
     /**
@@ -101,47 +105,63 @@ class ProdutoController extends Controller
 
     public function teste ()
     {
-/*
-        $insert = $this->produto->create([
-            'name'          => 'Iphone X',
-            'number'        => 52568,
-            'active'        => true,
-            'category'      => 'eletronicos',
-            'description'   => 'Celular 128Gb Ram',
-            'image'         => 'Celular 128Gb Ram',
-        ]);
+        //INSERT VIA ARRAY
         
-        if($insert)
-            return "Produto cadastrado com sucesso! ID: {$insert->id}";
-        else
-            return "Não foi possivel cadastrar o produto!";
-*/
-    //dd($p);
-    //FAZENDO UPDATE USANDO O METODO FIND (pesquisa pelo id)        
-    /*
-    $p = $this->produto->find(5);
-    $update = $p->update([
-            'name'          => 'Asus ZenFone',
-            'number'        => 45654,
-            'active'        => true,
-            'category'      => 'eletronicos',
-    ]);
+            $insert = $this->produto->create([
+                'name'          => 'Roberto',
+                'number'        => 55,
+                'active'        => true,
+                'category'      => 'seguro',
+                'description'   => 'Tabela21',
+                'image'         => 'xxx',
+            ]);
 
-        if($update)
-            return "Produto Alterado com sucesso!";
-        else
-            return "Não foi possivel Alterar o produto!";
+            if ($insert) 
+                return "cadastrado";
+            else
+                return "Err.";
+        
+            
+        //UPDATE USANDO O METODO FIND (pesquisa pelo id)        
+        /*
+            $p = $this->produto->find(5);
+            $update = $p->update([
+                    'name'          => 'Asus ZenFone',
+                    'number'        => 45654,
+                    'active'        => true,
+                    'category'      => 'eletronicos',
+            ]);
+        */
 
-    */
-    $update = $this->produto->where('number', 123456)->update([
-                                'name'     => 'Asus ZenFone',
-                                'number'   => 99,
-                                'active'   => true,
-                                'category' => 'eletronicos',  
-    ]);
-            if($update)
-            return "Produto Alterado com sucesso! 2";
-        else
-            return "Não foi possivel Alterar o produto!";
+        //UPDATE USANDO O METODO WHERE (pesquisa por um campo da tabela)
+        /*        
+            $update = $this->produto->where('number', 123456)->update([
+                                        'name'     => 'Asus ZenFone',
+                                        'number'   => 99,
+                                        'active'   => true,
+                                        'category' => 'eletronicos',  
+            ]);
+        */
+
+        //DELETE COM O METODO FIND (pesquisa pelo id)         
+        /*
+             $prod = $this->produto->find(3);
+             $delete = $prod->delete();
+        */
+
+        //DELETE COM O METODO DESTROY (pode ser passados varios id's)
+        /*
+            $prod = $this->produto->destroy([3,5,6]);
+        */
+
+        //DELETE COM O METODO WHERE (procura e exclui por um campo da tabela)
+            //$prod = $this->produto->where('number', 232565)->delete();
+
+            //*** pode ser usado com mais condições
+            //$prod = $this->produto->where('number', '>' , 99)->where('number', '<=' , 102)->delete();
+
+            //*** pode ser usado com um operador
+            //$prod = $this->produto->where('number','>=', 232565)->delete();
+
     }
 }

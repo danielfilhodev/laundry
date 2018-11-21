@@ -3,6 +3,8 @@
 @section('content')
 
     <h1 class="title-pg">Listagem de Contratos</h1> 
+    <a href="" class="btn btn-primary btn-add"> <span class="fas fa-folder-plus"></span> Cadastrar</a>
+    <br>
 
     <a href="{{ url('/painel/dashboard') }}">Dashboard</a> 
     <div class="content">

@@ -3,6 +3,7 @@
 @section('content')
 
     <h1 class="title-pg">Listagem de Produtos</h1> 
+    
     <a href="{{route('produtos.create')}}" class="btn btn-primary btn-add"> 
         <span class="fas fa-folder-plus"></span> Cadastrar
     </a>
@@ -18,17 +19,23 @@
 <table class="table table-striped" >
     <tr>
         <th>Produto</th>
+        <th>Status</th>
         <th>Seguro</th>
         <th>Descrição</th>
         <th>Ações</th>
-    </tr>
+    </tr>        
+
         @foreach($prod as $l)
+            @php
+                $l['active'] = ( $l['active'] == 1 ) ? 'Ativo' : 'Inativo';
+            @endphp
         <tr>
-            <td>{{$l->name}}</td>
+            <td>{{$l->name}}</td>            
+            <td>{{$l->active}}</td>
             <td>{{$l->category}}</td>
             <td>{{$l->description}}</td>
             <td>
-                <a href="" class="edit actions"><span class="fas fa-pencil-alt"></span></a>
+                <a href="{{route('produtos.edit', $l->id)}}" class="edit actions"><span class="fas fa-pencil-alt"></span></a>
                 <a href="" class="delete actions"><span class="fas fa-trash-alt"></span></a>
             </td>
         </tr>

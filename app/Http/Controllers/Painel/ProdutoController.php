@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Painel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Painel\Produto;
+use App\Http\Requests\Painel\ProdutoFormRequest;
 
 class ProdutoController extends Controller
 {
@@ -32,7 +33,18 @@ class ProdutoController extends Controller
         $title = 'Listagem de Contratos';
 
         $prod = $this->produto->all();
+/*
+        foreach ($prod1 as $p) {
 
+            $prod['name'] = $p['name'];
+            $prod['number'] = $p['number'];
+            $prod['active'] = ( $p['active'] == 1 ) ? 'Ativo' : 'Inativo';
+            $prod['category'] = $p['category'];
+            $prod['description'] = $p['description'];
+
+        }
+        //dd($prod);
+*/
         return view('painel.produtos.index', compact('prod', 'title'));
     }
 
@@ -46,7 +58,7 @@ class ProdutoController extends Controller
         $title = 'Cadastro de Produtos';
         $categorys = ['seguro'];
 
-        return view('painel.produtos.create', compact('title','categorys'));
+        return view('painel.produtos.create-edit', compact('title','categorys'));
     }
 
     /**
@@ -55,9 +67,43 @@ class ProdutoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProdutoFormRequest $request)
     {
-       return 'Cadastrando...';
+        //recupera todos os dados vindo do form
+        //dd($request->all());
+        
+        //recupera campos especificos
+        //dd($request->only(['name', 'number']));
+        
+        //recupera todos os campos excluindo os que forem solicitados
+        //dd($request->except(['name']));
+
+        //recupera um campo especifico
+        //dd($request->input(['name']));
+
+
+        $dataForm = $request->except('_token');
+        $dataForm['active'] = ( !isset($dataForm['active']) or $dataForm['active'] == null ) ? 0 : 1;
+
+        //validação dos dados
+        //$this->validate($request, $this->produto->rules);
+/*
+        $validate = validator($dataForm, $this->produto->rules);
+        if($validate->fails()){
+            return redirect()
+                    ->route('produtos.create')
+                    ->withErrors($validate)
+                    ->withInput();
+        }
+*/
+        $insert = $this->produto->create($dataForm);
+
+        if ($insert) 
+            
+            return redirect()->route('produtos.index');
+        else
+            return redirect()->back();
+            return redirect()->route('produtos.create-edit');
     }
 
     /**
@@ -79,7 +125,12 @@ class ProdutoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produto = $this->produto->find($id);
+
+        $title = "'Editar Produto: {$produto->name}'";
+        $categorys = ['seguro'];
+
+        return view('painel.produtos.create-edit', compact('title','categorys', 'produto'));
     }
 
     /**
@@ -89,9 +140,20 @@ class ProdutoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProdutoFormRequest $request, $id)
     {
-        //
+        $dataForm = $request->all();
+
+        $produto = $this->produto->find($id);
+
+        $dataForm['active'] = ( !isset($dataForm['active']) or $dataForm['active'] == null ) ? 0 : 1;
+
+        $update = $produto->update($dataForm);
+
+        if($update)
+            return redirect()->route('produtos.index');
+        else
+            return redirect()->route('produtos.edit', $id)->with(['errors' => 'Falha ao editar']);
     }
 
     /**

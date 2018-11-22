@@ -16,6 +16,6 @@ class Produto extends Model
  	];
 
 	//colunas que NÃO podem ser preenchidas pelo usuario
- 	protected $guarded = [];
+ 	//protected $guarded = [];
 
 }

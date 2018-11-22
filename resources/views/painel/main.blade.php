@@ -1,1 +1,1 @@
-@extends('painel.template.template1')
+@extends('painel.template.template')

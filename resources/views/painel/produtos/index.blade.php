@@ -2,8 +2,10 @@
 
 @section('content')
 
-    <h1 class="title-pg">Listagem de Contratos</h1> 
-    <a href="" class="btn btn-primary btn-add"> <span class="fas fa-folder-plus"></span> Cadastrar</a>
+    <h1 class="title-pg">Listagem de Produtos</h1> 
+    <a href="{{route('produtos.create')}}" class="btn btn-primary btn-add"> 
+        <span class="fas fa-folder-plus"></span> Cadastrar
+    </a>
     <br>
 
     <a href="{{ url('/painel/dashboard') }}">Dashboard</a> 
@@ -15,7 +17,7 @@
 <div class="flex-center">
 <table class="table table-striped" >
     <tr>
-        <th>Cliente</th>
+        <th>Produto</th>
         <th>Seguro</th>
         <th>Descrição</th>
         <th>Ações</th>

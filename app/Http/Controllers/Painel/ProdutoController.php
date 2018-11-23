@@ -13,7 +13,7 @@ class ProdutoController extends Controller
 {
 
     private $produto;
-
+    private $totpage = 1;
     public function __construct(Produto $produto)
     {
 
@@ -32,7 +32,7 @@ class ProdutoController extends Controller
     {
         $title = 'Listagem de Contratos';
 
-        $prod = $this->produto->all();
+        $produto = $this->produto->paginate($this->totpage);
 /*
         foreach ($prod1 as $p) {
 
@@ -45,7 +45,7 @@ class ProdutoController extends Controller
         }
         //dd($prod);
 */
-        return view('painel.produtos.index', compact('prod', 'title'));
+        return view('painel.produtos.index', compact('produto', 'title'));
     }
 
     /**
@@ -81,7 +81,6 @@ class ProdutoController extends Controller
         //recupera um campo especifico
         //dd($request->input(['name']));
 
-
         $dataForm = $request->except('_token');
         $dataForm['active'] = ( !isset($dataForm['active']) or $dataForm['active'] == null ) ? 0 : 1;
 
@@ -114,7 +113,12 @@ class ProdutoController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $produto = $this->produto->find($id);
+
+        $title  = "Produto: {$produto->name}";
+
+        return view('painel.produtos.show', compact('produto', 'title'));
     }
 
     /**
@@ -143,6 +147,7 @@ class ProdutoController extends Controller
     public function update(ProdutoFormRequest $request, $id)
     {
         $dataForm = $request->all();
+        //dd($dataForm);
 
         $produto = $this->produto->find($id);
 
@@ -164,7 +169,16 @@ class ProdutoController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $produto = $this->produto->find($id);
+
+        $delete = $produto->delete();
+
+        if ($delete) 
+            return redirect()->route('produtos.index');
+        else
+            return redirect()->route('produtos.show', $id)->with(['errors' => 'Falha ao Deletar']);
+
     }
 
 

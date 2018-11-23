@@ -5,18 +5,19 @@
 }
 
 .edit{
-    background: #2e7dd0;
+    /*background: #2e7dd0;*/
 }
-.delete{
-    background: #900505;
+.show{
+    /*background: #900505;*/
 }
 
 .actions{
-	padding: 6px;
+	/*
+	padding: 1px;
 	color: #FFF;
 	text-decoration: none;
 	font-size: 1em;
-	margin: 0px 0px;
+	margin: 0px 0px;*/
 }
 
 .actions:hover{

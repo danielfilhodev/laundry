@@ -3,8 +3,15 @@
 @section('content')
 
 <div class="col-md-6">
-	<h1 class="title-pg">Cadastro de Produtos</h1> 
-	<a href="{{ url('/painel/produtos') }}">Produtos</a> 
+	<h1 class="title-pg">
+		@if( isset($produto) )
+			Atualização de Produtos
+		@else
+			Cadastro de Produtos
+		@endif
+	</h1> 
+	<a href="{{route('produtos.index')}}">Produtos</a> 
+	<hr>
     @if( $errors->any())
         <div class="alert alert-danger">
             <ul>                
@@ -16,19 +23,16 @@
     @endif	
 
     @if( isset($produto) )
-		<form class="form" method="post" action="{{route('produtos.update', $produto->id)}}">
-			{!! method_field('PUT') !!}
+		{!! Form::model($produto, ['route' => ['produtos.update', $produto->id],'class' => 'form', 'method' => 'put']) !!}	
     @else
-		<form class="form" method="post" action="{{route('produtos.store')}}">
+		{!! Form::open(['route' => 'produtos.store', 'class' => 'form']) !!}	
     @endif
-		{{ csrf_field() }}
-		<div class="form-group">
-			<input type="text" name="name" placeholder="Nome" class="form-control" value="{{$produto->name or old('name')}}">
+		<div class="form-group">			
+			{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Nome:']) !!}
 		</div>
 		<div class="form-group">
 			<label>
-				<input type="checkbox" name="active" value="1" @if( isset($produto) && $produto->active == 1) checked @endif>
-
+				{!! Form::checkbox('active') !!}
 					@if( isset($produto) )
 			            @php
 			              	$produto->active = ( $produto->active == 1 ) ? 'Ativo' : 'Inativo';
@@ -40,30 +44,20 @@
 			</label>
 		</div>
 		<div class="form-group">
-			<input type="text" name="number" placeholder="Numero" class="form-control" value="{{$produto->number or old('number')}}">
+			{!! Form::text('number', null, ['class' => 'form-control', 'placeholder' => 'Número:']) !!}
 		</div>
 		<div class="form-group">
-			<select name="category" class="form-control">
-				<option value="0">Escolha a catogoria</option>
-					@foreach($categorys as $cat)
-						<option value="{{$cat}}" 
-							@if(old('category') == $cat) selected @endif
-							@if(isset($produto) && $produto->category == $cat)
-								selected
-							@endif
-							>{{$cat}}</option>
-					@endforeach		
-			</select>
+			{!! Form::select('category', array_merge(['0' => 'Selecione um valor'],$categorys), null, ['class' => 'form-control']) !!}
 		</div>
 		<div class="form-group">
-			<textarea name="description" placeholder="Descrição" class="form-control">{{$produto->description or old('description')}}</textarea>
+			{!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => 'Descrição:']) !!}
 		</div>
 		@if( isset($produto) )
-			<button class="btn btn-primary">Atualizar Produto</button>
+			{!! Form::submit('Atualizar Produto', ['class' => 'btn btn-primary']) !!}
 		@else
-			<button class="btn btn-primary">Cadastrar Produto</button>
+			{!! Form::submit('Cadastrar Produto', ['class' => 'btn btn-primary']) !!}			
 		@endif
-
+		{!! Form::close() !!}
 		
 	</form>
 
